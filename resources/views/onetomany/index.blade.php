@@ -3,6 +3,8 @@
 
 {{-- @dump($data) --}}
 
+<h2 class="text-center">----One To Many----</h2>
+
 <div class="container justify-content-center">
     <a href="{{route('onetomany.create')}}" class="btn btn-primary btn mb-3">Add Post</a>    
     {{-- <div class="row"> --}}

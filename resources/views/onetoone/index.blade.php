@@ -3,6 +3,9 @@
 @section('content')
 {{-- @dd($data) --}}
 
+<h2 class="text-center">----One To One----</h2>
+
+
 <div class="container">
     <a class="btn btn-info" style="color: white" href="{{Route('onetoone.create')}}">Create</a>
 
