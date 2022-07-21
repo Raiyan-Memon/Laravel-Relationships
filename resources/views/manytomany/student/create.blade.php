@@ -22,6 +22,7 @@
 
         <button type="submit" class="btn btn-success btn-sm mt-2">Save</button>
     </form>
+   <a href="{{route('manytomany.index')}}"> <button class="btn btn-primary btn-sm mt-2">Back</button></a>
 </div>
 
 <script>

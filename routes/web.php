@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ProjectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,7 @@ Route::resource('/onetomany', 'PostController');
 Route::resource('/comment','CommentController');
 Route::resource('/manytomany', 'StudentController');
 Route::resource('/book', 'BookController');
-
+Route::resource('/hasonethrough','ProjectController');
 
 Auth::routes();
 

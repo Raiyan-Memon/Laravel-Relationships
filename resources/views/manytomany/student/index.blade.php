@@ -5,7 +5,7 @@
 
 .verticalline{
 
-    width: 3px; border: 3px solid lightblue; height:250px;
+    width: 3px; border: 3px solid lightblue; height:350px;
     display: inline-block;
     text-align: center;
 
@@ -14,6 +14,8 @@
 
 </style>
 
+{{-- @dump($student) --}}
+
 <h2 class="text-center">----Many To Many----</h2>
 
 
@@ -21,9 +23,9 @@
     <div class="row">
         <div class="col-5 text-center">
             <p class="">Student</p>
-            @php $student = DB::select('select * from relationship.students');
-            @endphp
-            {{-- @dump($student) --}}
+            {{-- @php $student = DB::select('select * from relationship.students');
+            @endphp 
+            @dump($student) --}}
 
             <a href="{{route('manytomany.create')}}"><button class="btn btn-primary btn-sm mb-2">Add Student</button></a>
             <table class="table table-striped">
@@ -31,6 +33,8 @@
                     <tr>
                         <th scope="col">id</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Books Taken</th>
+
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -40,12 +44,20 @@
                         <th scope="row">{{$item->id}}</th>
                         <td>{{$item->name}}</td>
                         <td>
+                           @foreach ($item->books as $item1)
+                               {{$item1->title}},
+                           @endforeach
+                        
+                        
+                        </td>
+
+                        <td>
                             
                             {{-- <a href="{{route('manytomany.show', $item->id)}}"><button class="btn btn-primary btn-sm">
                                     Show
                                 </button></a> --}}
                            
-                            <form style="display: inline-block" action="{{route('manytomany.destroy', $item->id)}}"
+                            <form style="display: inline-block" action="{{route('manytomany.destroy', $item)}}"
                                 method="POST">
                                 @csrf @method('DELETE')
                                 <button class="btn btn-danger btn-sm">
@@ -67,7 +79,7 @@
 
         <div class="col-5 text-center">
             <p>Library</p>
-            @php $book = DB::select('select * from relationship.books'); @endphp
+            {{-- @php $book = DB::select('select * from relationship.books'); @endphp --}}
             {{-- @dump($book) --}}
 
             <a href="{{route('book.create')}}"><button class="btn btn-primary btn-sm mb-2">Add Book</button></a>
@@ -76,6 +88,7 @@
                     <tr>
                         <th scope="col">id</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Books Taken By Students</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -84,6 +97,14 @@
                     <tr>
                         <th scope="row">{{$item->id}}</th>
                         <td>{{$item->title}}</td>
+                        <td>
+                        @foreach ($item->students as $item2)
+                            {{$item2->name}},
+                        @endforeach
+                            
+
+                        </td>
+
                         <td>
                             
                             {{-- <a href="{{route('book.show', $item->id)}}"><button class="btn btn-primary btn-sm">

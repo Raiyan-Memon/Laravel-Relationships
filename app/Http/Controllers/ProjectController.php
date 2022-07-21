@@ -2,30 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Book;
-use App\Student;
+use App\User;
+use App\Project;
+use App\Task;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     public function __construct()
-     {
-        $this->middleware('auth');
-     }
     public function index()
     {
-     
-        
-        $student = Student::with('books')->get();
-        $book = Book::with('students')->get();
-
-        return view('manytomany.student.index', compact('student', 'book'));
+        $project = Project::with('users','tasks')->get();
+        $user = User::all();
+        return view('hasonethrough.index', compact('project','user'));
     }
 
     /**
@@ -35,7 +28,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('manytomany.student.create');
+        return view('hasonethrough.create');
     }
 
     /**
@@ -46,34 +39,31 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Student;
+        $data = new Task;
         $data->name = $request->name;
+        $data->user_id = $request->user_id;
         $data->save();
-        $id =[];
-        $id = $request->books;
-        $data->books()->attach($id);
-
-        return redirect('manytomany');
+        return redirect('hasonethrough');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Project $project)
     {
-        return "this is show";
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Student  $student
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(Project $project)
     {
         //
     }
@@ -82,10 +72,10 @@ class StudentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Student  $student
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Project $project)
     {
         //
     }
@@ -93,17 +83,11 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Student  $student
+     * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        // return "delete"; 
-        // dd($id);
-        $delete = Student::find($id);
-        // dd($delete);
-        $delete->books()->detach();
-        $delete->delete();
-        return back();
+        //
     }
 }

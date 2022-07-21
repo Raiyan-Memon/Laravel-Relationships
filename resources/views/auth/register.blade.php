@@ -39,6 +39,35 @@
                             </div>
                         </div>
 
+
+                        {{-- Project_id --}}
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Select Project') }}</label>
+
+                            <div class="col-md-6">
+                                {{-- <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> --}}
+                            
+                                <select class="form-control" name="project_id" id="">
+                                    <option value="">Select Project</option>
+
+                                    @php
+                                    $project = DB::select('select * from relationship.projects');
+                                @endphp
+
+                                @foreach ($project as $projectitem)
+                                
+                                <option value="{{$projectitem->id}}">{{$projectitem->title}}</option>
+
+                                @endforeach
+    
+                                @dump($project)       
+
+                                </select>
+                            </div>
+                        </div>
+
+                        
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
@@ -69,6 +98,7 @@
                             </div>
                         </div>
                     </form>
+                   <a href="{{route('hasonethrough.index')}}"> <button class="btn btn-info">Back</button></a>
                 </div>
             </div>
         </div>

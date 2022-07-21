@@ -40,9 +40,6 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-primary  shadow-sm" >
             <div class="container " >
-                <a class="navbar-brand text-white " href="#">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
 
                 @if (Auth::user())
                     <a class="navbar-brand text-white" href="{{ url('/onetoone') }}">
@@ -53,6 +50,9 @@
                      </a>
                      <a class="navbar-brand text-white" href="{{ url('/manytomany') }}">    
                         ManyToMany
+                     </a>
+                     <a class="navbar-brand text-white" href="{{ url('/hasonethrough') }}">    
+                        hasOneThrough
                      </a>
   
                 @endif

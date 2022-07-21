@@ -7,7 +7,7 @@ use App\Book;
 
 class Student extends Model
 {
-    
+   protected $table = 'students';
 
     public function books()
     {

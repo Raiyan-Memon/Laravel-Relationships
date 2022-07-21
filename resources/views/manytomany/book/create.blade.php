@@ -8,7 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-
+<div class="container">
 
 {{"create book"}}
 <form method="POST" action="{{Route('book.store')}}">
@@ -27,7 +27,9 @@
 
     <button class="btn btn-success mt-2 btn-sm" type="submit">Save</button>
 
-</form>
+</form> 
+<a href="{{route('manytomany.index')}}"> <button class="btn btn-primary btn-sm mt-2">Back</button></a>
+</div>
     <script>
         $(function () {
             $(".multiselect").select2({

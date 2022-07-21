@@ -10,10 +10,13 @@
 ## Relationship
 
 ### One To One
-#### Model Name - Customer and Phone
+#### Model Name - Customer and Phone.
 
 ### One To Many
-#### Model Name - Post and Comment
+#### Model Name - Post and Comment.
 
 ### Many To Many
-#### Model Name - Student and Book
+#### Model Name - Student and Book.
+
+### HasOneThrough Relationship
+#### Model Name - Project, User and Task.
